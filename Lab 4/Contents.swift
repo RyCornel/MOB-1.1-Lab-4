@@ -1,53 +1,83 @@
-import Foundation
+//: [Previous](@previous)
+import UIKit
 /*:
- ## Exercise - Structs, Instances, and Default Values
+ ## Exercise - Enumerations
  
- Imagine you are creating an app that will monitor location. Create a `GPS` struct with two variable properties, `latitude` and `longitude`, both with default values of 0.0.
+ Define a `Suit` enum with four possible cases: `clubs`, `spades`, `diamonds`, and `hearts`.
  */
 
-struct GPS {
-    var lattitude = 0.0
-    var longitude = 0.0
+enum Suit {
+    case Clubs
+    case Spades
+    case Diamonds
+    case Hearts
+}
+
+var diamondFlush = Suit.Diamonds
+print(diamondFlush)
+
+/*:
+ Imagine you are being shown a card trick and have to draw a card and remember the suit. Create a variable instance of `Suit` called `cardInHand` and assign it to the `hearts` case. Print out the instance.
+ */
+
+var cardInHand = Suit.Hearts
+print(cardInHand)
+
+/*:
+ Now imagine you have to put back the card you drew and draw a different card. Update the variable to be a spade instead of a heart.
+ */
+
+var newCardInHand = Suit.Spades
+print(newCardInHand)
+
+/*:
+ Imagine you are writing an app that will display a fun fortune (i.e. something like "You will soon find what you seek.") based on cards drawn. Write a function called `getFortune(cardSuit:)` that takes a parameter of type `Suit`. Inside the body of the function, write a switch statement based on the value of `cardSuit`. Print a different fortune for each `Suit` value. Call the function a few times, passing in different values for `cardSuit` each time.
+ */
+
+func getFortune(cardSuit: Suit){
+    switch cardSuit {
+    case .Clubs:
+        print("You will be clubbed!")
+    case .Diamonds:
+        print("You will be drenched in diamonds!")
+    case .Hearts:
+        print("You will have a broken heart!")
+    case .Spades:
+        print("Lets call a spade a spade.")
+    }
+}
+
+getFortune(cardSuit: .Diamonds)
+getFortune(cardSuit: .Hearts)
+getFortune(cardSuit: .Clubs)
+
+/*:
+ Create a `Card` struct below. It should have two properties, one for `suit` of type `Suit` and another for `value` of type `Int`.
+ */
+
+struct Card {
+    
+    var suit: Suit
+    var value: Int
+    
 }
 
 /*:
- Create a variable instance of `GPS` called `somePlace`. It should be initialized without supplying any arguments. Print out the latitude and longitude of `somePlace`, which should be 0.0 for both.
+ How many values can playing cards have? How many values can `Int` be? It would be safer to have an enum for the card's value as well. Inside the struct above, create an enum for `Value`. It should have cases for `ace`, `two`, `three`, `four`, `five`, `six`, `seven`, `eight`, `nine`, `ten`, `jack`, `queen`, `king`. Change the type of `value` from `Int` to `Value`. Initialize two `Card` objects and print a statement for each that details the card's value and suit.
  */
 
-var somePlace = GPS(lattitude: 0.0, longitude: 0.0)
-print(somePlace.lattitude)
-print(somePlace.longitude)
-
-
-/*:
- Change `somePlace`'s latitude to 51.514004, and the longitude to 0.125226, then print the updated values.
- */
-
-somePlace.lattitude = 51.514004
-somePlace.longitude = 0.125226
-
-print(somePlace.lattitude)
-print(somePlace.longitude)
-
-
-/*:
- Now imagine you are making a social app for sharing your favorite books. Create a `Book` struct with four variable properties: `title`, `author`, `pages`, and `price`. The default values for both `title` and `author` should be an empty string. `pages` should default to 0, and `price` should default to 0.0.
- */
-
-struct Book {
-    var tittle = ""
-    var author = ""
-    var pages = 0
-    var price = 0.0
+enum value {
+    case Ace
+    case Two
+    case Three
+    case Four
+    case Five
+    case Six
+    case Seven
+    case Eight
+    case Nine
+    case Ten
+    case Jack
+    case Queen
+    case King
 }
-
-
-/*:
- Create a variable instance of `Book` called `favoriteBook` without supplying any arguments. Print out the title of `favoriteBook`. Does it currently reflect the title of your favorite book? Probably not. Change all four properties of `favoriteBook` to reflect your favorite book. Then, using the properties of `favoriteBook`, print out facts about the book.
- */
-
-var favoriteBook = Book(tittle: "Catcher In The Rye", author: "J.D. Salinger", pages: 234, price: 21.99)
-
-print(favoriteBook)
-
-//: [Next](@next)
